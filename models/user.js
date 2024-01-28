@@ -52,7 +52,7 @@ userSchema.static('matchPassword',async function(email,password){
     .update(password)
     .digest('hex');
     if(password1 != user.password)throw new Error('wrong password');
-    return {...user,password:undefined,salt:undefined};
+    return user;
 })
 
 const User = model('user',userSchema);
