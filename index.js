@@ -9,7 +9,7 @@ const {checkForAuthenticationCookie}= require('./middleware/authentication')
 
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
-//app.use(checkForAuthenticationCookie('token'))
+app.use(checkForAuthenticationCookie('token'))
 
 mongoose.connect('mongodb://127.0.0.1:27017/blogify').
 then((e)=>console.log('mongoDB connected'));
