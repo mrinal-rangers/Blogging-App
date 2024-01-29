@@ -8,7 +8,7 @@ function checkForAuthenticationCookie(cookieName){
             const userPayLoad = validateToken(tokenCookieValue);
             req.user = userPayLoad;
         }catch(error){}
-        next();
+        return next();
     }
 }
 
