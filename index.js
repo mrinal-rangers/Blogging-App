@@ -5,8 +5,9 @@ const path = require('path');
 const userRoute = require('./routes/user')
 const mongoose=require('mongoose');
 const cookieParser = require('cookie-parser');
-const {checkForAuthenticationCookie}= require('./middleware/authentication')
-const blogRoute = require('./routes/blog')
+const {checkForAuthenticationCookie}= require('./middleware/authentication');
+const blogRoute = require('./routes/blog');
+const Blog = require('./models/blog')
 
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
@@ -18,7 +19,7 @@ then((e)=>console.log('mongoDB connected'));
 app.set('view engine',"ejs");
 app.set('views',path.resolve('./views'))
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
     return res.render('home',{
         user:req.user
     });
