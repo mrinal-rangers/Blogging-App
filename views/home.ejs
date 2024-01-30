@@ -6,7 +6,19 @@
 </head>
 <body>
     <%- include('./partials/nav.ejs')%>
-    <h1>Homepage</h1>   
+    
+    <div class="container mt-4 " style="display: flex; gap:2rem">
+        <% blogs.forEach((blog) => { %>
+            <div class="card" style="width: 14rem;">
+                <img src="<%=blog.coverImageURL %>" class="card-img-top" alt="" style="padding:1rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= blog.title  %></h5>
+                  <a href="/blog/<%=blog._id  %>" class="btn btn-primary">view</a>
+                </div>
+              </div>
+        <% }) %>
+    </div>
+    
     <%- include('./partials/scripts.ejs')%>
 </body>
 </html>
