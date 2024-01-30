@@ -8,14 +8,18 @@
     <%- include('./partials/nav.ejs')%>
     
     <div class="container mt-4">
-        <form>
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
+        <form action="/blog" method="post">
+            <div class="mb-3 ">
+                <label for="coverImage" class="form-label ">Cover Image</label>
+                <input type="file" class="form-control" id="coverImage" aria-describedby="coverImage" name="coverImage">
+              </div>
+            <div class="mb-3 ">
+              <label for="title" class="form-label ">Title</label>
               <input type="text" class="form-control" id="title" aria-describedby="title" name="title">
             </div>
+            <label for="body" class="form-label ">Body</label>
             <div class="form-floating mb-4">
-                <label for="body" >Body</label>
-                <textarea class="form-control" id="body"></textarea>
+                <textarea class="form-control " id="body" name="body"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
