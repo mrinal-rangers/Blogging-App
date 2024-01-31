@@ -11,6 +11,10 @@
         <img src="<%= blog.coverImageURL %>" style="border:2px solid black ; margin-top:4px; max-width:300px"/>
         <pre class="mt-4"><%= blog.body %></pre>
     </div>
+    <div class="ms-5">
+        <img src="<%= blog.createdBy.profileImageURL.replace('/public/','/') %>" width="50px" class="ms-4" />
+        <%= blog.createdBy.fullName %>
+    </div>
     
     <%- include('./partials/scripts.ejs')%>
 </body>
