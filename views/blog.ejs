@@ -7,13 +7,37 @@
 <body>
     <%- include('./partials/nav.ejs')%>
     <div class="container mt-4">
-        <h1><%=blog.title%></h1>
+        <h1 ><%=blog.title%></h1>
+        <div class="mb-4">
+            <img src="<%= blog.createdBy.profileImageURL.replace('/public/','/') %>" width="50px"  />
+            <%= blog.createdBy.fullName %>
+        </div>
         <img src="<%= blog.coverImageURL %>" style="border:2px solid black ; margin-top:4px; max-width:300px"/>
-        <pre class="mt-4"><%= blog.body %></pre>
+        <pre class="mt-4" style="white-space: pre-wrap;"><%= blog.body %></pre>
     </div>
-    <div class="ms-5">
-        <img src="<%= blog.createdBy.profileImageURL.replace('/public/','/') %>" width="50px" class="ms-4" />
-        <%= blog.createdBy.fullName %>
+    <div class="container mt-3">
+        <h4 class="mb-4">Comments (<%= comments.length %>)</h4>
+        <% if (locals.user) { %>
+            <form action="/blog/comment/<%= blog._id %>" method="post">
+                <div class="mb-3" style="display:flex; gap:1.5rem">
+                    <div>
+                        <img src ="<%=user.profileImageURL.replace('/public/','/')%>"  width="50px"/> 
+                    </div>
+                  <input type="text" class="form-control" id="content" name="content" placeholder="Enter your Comment">
+                  <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        <% } %>
+        <div class="container mt-4" >
+            <% comments.forEach((comment) => { %>
+                <hr/>
+                <div class="mt-3"style="display:flex; gap:1.5rem ; text-align:right">
+                    <img src ="<%=comment.createdBy.profileImageURL.replace('/public/','/')%>"  width="30px" height="30px"/>
+                    <h5 style="width: 3rem; white-space: wrap;"><%=comment.createdBy.fullName   %></h5>
+                    <pre style="margin-top: auto; white-space: pre-wrap;"><%= comment.content %></pre>
+                </div>
+            <% }) %>
+        </div>
     </div>
     
     <%- include('./partials/scripts.ejs')%>
